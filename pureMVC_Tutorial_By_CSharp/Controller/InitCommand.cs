@@ -19,8 +19,6 @@ namespace pureMVC_Tutorial_By_CSharp.Controller
 
             Form1 form1 = (Form1)notification.Body;
             Facade.RegisterMediator(new FormMediator(form1));
-
-
         }
     }
 }

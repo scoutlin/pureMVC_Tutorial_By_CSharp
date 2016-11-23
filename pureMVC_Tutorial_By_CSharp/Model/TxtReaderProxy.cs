@@ -23,9 +23,19 @@ namespace pureMVC_Tutorial_By_CSharp.Model
         {
             string content = string.Empty;
 
-            content = File.ReadAllText(path);
+            try
+            {
+                content = File.ReadAllText(path);
+            }
+            catch(Exception ex)
+            {
+                SendNotification(NotificationNames.ShowTextContent, ex.ToString(), "string");
+            }
 
-            SendNotification(NotificationNames.ShowTextContent, content, "string");
+            if (content != string.Empty)
+            {
+                SendNotification(NotificationNames.ShowTextContent, content, "string");
+            }
         }
     }
 }
