@@ -8,33 +8,42 @@ using PureMVC.Patterns;
 using pureMVC_Tutorial_By_CSharp.Facades;
 using System.IO;
 
+using pureMVC_Tutorial_By_CSharp.Model.DataObject;
+
 namespace pureMVC_Tutorial_By_CSharp.Model
 {
     class TxtReaderProxy : Proxy, IProxy
     {
         public new const string NAME = "TxtReaderProxy";
 
-        public TxtReaderProxy() : base(NAME)
+        public TxtReaderProxy() : base(NAME, new ReadTxtFileDO())
         {
-            
+            //This Module no need to initial
         }
 
         public void ReadTxt(string path)
         {
-            string content = string.Empty;
+            bool hasException = false;
+
+            string txtContent = ((ReadTxtFileDO)Data).ReadTxt(path);
 
             try
             {
-                content = File.ReadAllText(path);
+                txtContent = File.ReadAllText(path);
             }
             catch(Exception ex)
             {
-                SendNotification(NotificationNames.ShowTextContent, ex.ToString(), "string");
+                hasException = true;
+                txtContent = ex.ToString();
             }
 
-            if (content != string.Empty)
+            if (hasException == false)
             {
-                SendNotification(NotificationNames.ShowTextContent, content, "string");
+                SendNotification(NotificationNames.ShowTextContent, txtContent, "string");
+            }
+            else
+            {
+                SendNotification(NotificationNames.ShowTextContent, txtContent, "string");
             }
         }
     }

@@ -37,9 +37,9 @@ namespace pureMVC_Tutorial_By_CSharp.Facades
             RegisterCommand(CommandNames.Init, typeof(InitCommand));
         }
 
-        public void Start(Object app)
+        public void Start(Object form1)
         {
-            SendNotification(CommandNames.Init, app);
+            SendNotification(CommandNames.Init, form1);
         }
     }
 }
