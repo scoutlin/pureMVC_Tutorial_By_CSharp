@@ -14,13 +14,11 @@ namespace pureMVC_Tutorial_By_CSharp.View
     {
         public new const string NAME = "FormMediator";
 
-        private Form1 form;
         private TxtReaderProxy txtReaderProxy;
 
         public FormMediator(Form1 form) : base(NAME, form)
         {
-            this.form = form;
-            form.EventHandler_button1_Click += EventHandler_button1_Click;
+            ((Form1)ViewComponent).EventHandler_button1_Click += EventHandler_button1_Click;
         }
 
         public override void OnRegister()
@@ -31,7 +29,7 @@ namespace pureMVC_Tutorial_By_CSharp.View
 
         void EventHandler_button1_Click(object sender, EventArgs e)
         {
-            txtReaderProxy.ReadTxt(form.GetTextBox_Path.Text);
+            txtReaderProxy.ReadTxt(((Form1)ViewComponent).GetTextBox_Path.Text);
         }
 
         public override IList<string> ListNotificationInterests()
@@ -49,7 +47,7 @@ namespace pureMVC_Tutorial_By_CSharp.View
             {
                 case NotificationNames.ShowTextContent:
                     {
-                        form.GetRichTextBox_Content.Text = string.Empty;
+                        ((Form1)ViewComponent).GetRichTextBox_Content.Text = string.Empty;
                         switch(notification.Type)
                         {
                             default:
@@ -60,7 +58,7 @@ namespace pureMVC_Tutorial_By_CSharp.View
 
                             case "string":
                                 {
-                                    form.GetRichTextBox_Content.Text = (string)notification.Body;
+                                    ((Form1)ViewComponent).GetRichTextBox_Content.Text = (string)notification.Body;
                                 }
                                 break;
                         }                     

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using PureMVC.Interfaces;
+﻿using PureMVC.Interfaces;
 using PureMVC.Patterns;
 
 using pureMVC_Tutorial_By_CSharp.Model;

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
@@ -17,6 +15,11 @@ namespace pureMVC_Tutorial_By_CSharp.Model
         public new const string NAME = "TxtReaderProxy";
 
         public TxtReaderProxy() : base(NAME, new ReadTxtFileDO())
+        {
+            //This Module no need to initial
+        }
+
+        public override void OnRegister()
         {
             //This Module no need to initial
         }
